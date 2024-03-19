@@ -10,7 +10,7 @@ pipeline {
     }
 
     environment {
-        SCANNER_HOME= tool 'sonar-scanner'
+        SCANNER_HOME= tool 'chandu-sonarqube-scaner'
     }
 
     stages {
@@ -50,7 +50,7 @@ pipeline {
         stage('Quality Gate') {
             steps {
                 script {
-                  waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token' 
+                  waitForQualityGate abortPipeline: false, credentialsId: 'sonar-credentails' 
                 }
             }
         }
