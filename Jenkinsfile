@@ -10,7 +10,7 @@ pipeline {
     }
 
     environment {
-        SCANNER_HOME= tool 'chandu-sonarqube-scaner'
+        SCANNER_HOME= tool 'chandu-sonarqube-scaner1'
     }
 
     stages {
