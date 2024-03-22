@@ -93,7 +93,7 @@ pipeline {
                }
             }
         }
-        // stage('Deploy to kubernets'){
+        /* stage('Deploy to kubernets'){
             steps{
                 script{
                     dir('Kubernetes') {
@@ -139,7 +139,7 @@ pipeline {
             )
         }
     }
-}//
+}*/
            stage('Update Deployment File') {
                environment {
                   GIT_REPO_NAME = "Boardgame"
