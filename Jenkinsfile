@@ -78,9 +78,9 @@ pipeline {
                }
             }
         }
-        stage('TRIVY FS SCAN') {
-            steps {
-                sh "trivy fs . > trivyfs.txt"
+        stage("TRIVY"){
+            steps{
+                sh "trivy image  chandu5562/boardshack:latest > trivyimage.txt" 
             }
         }
 
