@@ -93,7 +93,7 @@ pipeline {
                }
             }
         }
-         stage('Deploy to kubernets'){
+        // stage('Deploy to kubernets'){
             steps{
                 script{
                     dir('Kubernetes') {
@@ -105,8 +105,8 @@ pipeline {
                 }
             }
         }
-    }
-    post {
+    }//
+    //post {
     always {
         script {
             def jobName = env.JOB_NAME
@@ -139,6 +139,25 @@ pipeline {
             )
         }
     }
-}
-
+}//
+           stage('Update Deployment File') {
+               environment {
+                  GIT_REPO_NAME = "Boardgame"
+                  GIT_USER_NAME = "shekar55"
+              }
+              steps {
+                  withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+                      sh '''
+                          git config user.email "shekar.aduluri25@gmail.com"
+                          git config user.name "shekar55"
+                          BUILD_NUMBER=${BUILD_NUMBER}
+                          sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" Boardgame/deployment-service.yaml
+                          git add Boardgame/deployment-service.yaml
+                          git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                          git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                       '''
+            }
+        }
+    }
+  }
 }
