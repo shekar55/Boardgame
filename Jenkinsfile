@@ -106,7 +106,7 @@ pipeline {
             }
         }
     }
-    //post {
+    /*//post {
     always {
         script {
             def jobName = env.JOB_NAME
@@ -138,7 +138,7 @@ pipeline {
                 attachmentsPattern: 'trivy-image-report.html'
             )
         }
-    }
+    }*/
 }
           
 
